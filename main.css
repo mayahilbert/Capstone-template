@@ -30,6 +30,7 @@ html {
   box-sizing: border-box;
   scroll-behavior: smooth;
   overflow-x: hidden;
+  interpolate-size: allow-keywords;
 }
 
 body {
@@ -271,16 +272,17 @@ nav {
 }
 
 .column-left {
-  align-self: stretch;
-  width: 100%;
   padding: 2em 0 2em 2em;
   display: flex;
   flex-direction: column;
+  flex: 1;
 }
 
 .column-right {
   padding: 2em;
   max-width: 50em;
+  flex: 1;
+  flex-grow: 2;
 }
 
 .project-section {
@@ -310,12 +312,6 @@ nav {
   padding: 0.3em;
 }
 
-.view-project-link {
-  display: none;
-  background-color: var(--secondary-bg-color);
-  padding: 1em;
-}
-
 p.artist-name-proj {
   font-size: 1.5em;
   font-weight: bolder;
@@ -330,6 +326,10 @@ p.artist-name-proj {
   gap: 5em;
 }
 
+.project-text-body p {
+  max-width: 70ch;
+}
+
 .project-body img {
   max-width: 90vw;
   height: auto;
@@ -337,7 +337,7 @@ p.artist-name-proj {
 }
 
 .vid-container iframe {
-  height: 40vh;
+  height: 50vh;
   width: 90vw;
 }
 
@@ -346,9 +346,102 @@ p.artist-name-proj {
   position: relative;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  gap: 2em;
   opacity: 1;
   transition: 0.3s;
   z-index: 5;
+}
+
+/* Styles for the details element and its content. The details element is used for the descriptive transcript. */
+.accordion {
+  display: block;
+  max-width: clamp(30%, 80ch, 90vw);
+  width: 100%;
+}
+
+details * {
+  margin: 0;
+  padding-inline: 1em;
+}
+
+details h3 {
+  padding: 0;
+}
+
+details {
+  overflow: hidden;
+}
+
+/* Height animation*/
+
+@media (prefers-reduced-motion: no-preference) {
+  details::details-content {
+    transition: block-size .5s,
+      content-visibility .5s;
+    transition-behavior: allow-discrete;
+  }
+}
+
+details::details-content {
+  block-size: 0;
+}
+
+details[open]::details-content {
+  block-size: auto;
+}
+
+summary {
+  cursor: pointer;
+  position: relative;
+  padding-block: 1em;
+}
+
+summary::before,
+summary::after {
+  transition: .2s;
+}
+
+summary::before,
+summary::after {
+  content: '';
+}
+
+summary::before,
+summary::after {
+  inline-size: .75em;
+  block-size: 0;
+  border-block-end: 2px solid;
+  position: absolute;
+  inset-block-start: calc(50% - 1px);
+  inset-inline-end: 2rem;
+  transform: translateY(-50%);
+}
+
+summary::after {
+  transform: rotate(90deg);
+  transform-origin: 50% 50%;
+
+}
+
+[open] summary::after {
+  transform: rotate(0deg);
+}
+
+details p {
+  padding-block-end: 1em;
+}
+
+summary::marker {
+  content: none;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+summary:focus-visible {
+  border: 0.1rem solid var(--accent-color);
 }
 
 footer {
@@ -475,7 +568,7 @@ footer {
   }
 
   .column-right {
-    padding: 2em 5em 2em 4em;
+    padding: 2em 5em 2em 2em;
   }
 
   .column-left {
@@ -484,11 +577,6 @@ footer {
 
   .project-section-inner-wrapper {
     max-width: 60vw;
-  }
-
-  .view-project-link {
-    position: absolute;
-    top: 90vh;
   }
 
   .project-body img {

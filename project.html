@@ -50,8 +50,8 @@
         <div>
           <h1>Project Title</h1>
           <p class="artist-name-proj">Artist Name</p>
+          <a href="#project" class="view-project-link">View project &darr;</a>
         </div>
-        <a href="#project" class="view-project-link">View project &darr;</a>
       </div>
       <div class="project-text-body column-right project-right">
         <h2>Project Statement</h2>
@@ -91,6 +91,8 @@
       </div>
     </div>
     <div class="project-body" id="project">
+      <!-- This heading is for screen readers to maintain an accessible hierarchy. You can leave it as "Project" for all the works, indicating to screen readers that this is the section containing the project. -->
+      <h2 class="visually-hidden">Project</h2>
       <!-- This template has an example of an image and a video. Use what is appropriate to each project. 
           The image is styled in main.css as ".project-body img". The video is styled in main.css as ".vid-container iframe" and ".vid-container".
           If using a Vimeo video, simply replace this part "87110435?h=f253e737bd" in the src. You can get this portion for your video by clicking the "Share" button in Vimeo. Don't paste in the full embed or it will throw off the formatting.-->
@@ -98,6 +100,22 @@
       <div class="vid-container">
         <iframe src="https://player.vimeo.com/video/943809475?h=f253e737bd&title=0&byline=0&portrait=0&api=1"
           frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        <div class="accordion">
+          <details name="descriptive-transcript" class="descriptive-transcript">
+            <summary>
+              <h3>Descriptive Transcript</h3>
+            </summary>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet
+              venenatis urna cursus eget nunc scelerisque viverra mauris. Molestie
+              a iaculis at erat pellentesque adipiscing. Laoreet suspendisse
+              interdum consectetur libero. Tellus id interdum velit laoreet id
+              donec. Massa tincidunt nunc pulvinar sapien. In aliquam sem
+              fringilla ut. Iaculis urna id volutpat lacus laoreet. Quam id leo in
+              vitae turpis. Tellus molestie nunc non blandit massa enim nec.
+            </p>
+          </details>
+        </div>
       </div>
     </div>
   </main>
